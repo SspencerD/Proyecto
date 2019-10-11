@@ -107,7 +107,7 @@
               <button type="button" class="btn btn-default btn-lg"><span>Buscar</span></button>
             </span>
            </div>
-           @include('includes.shopping')
+         <!--   aqui va el include shopping blade -->
         </div>
       </div>
     </div>
