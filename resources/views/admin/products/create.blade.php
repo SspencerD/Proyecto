@@ -60,6 +60,17 @@
                   <input name="description" id="descripcion" placeholder="¿de que trata?" type="text" class="form-control" value="{{ old('description') }}">
                 </div>
               </div>
+              <div class="col-md-3">
+                <div class="position-relative form-group">
+                  <label for="descripcion" class="">Categoria</label>
+                  <select name="category_id"  class="form-control">
+                    <option Value="">General</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="position-relative col-md-2 form-group">
               <label for="price" class="">Precio</label>

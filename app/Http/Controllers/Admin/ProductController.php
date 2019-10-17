@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');   // devolvera el formulario de registro
+
+        $categories = Category::orderBy('name')->get();
+        return view('admin.products.create')->with(compact('categories'));   // devolvera el formulario de registro
     }
 
     public function store(Request $request) //inyección de dependencia de Laravel
@@ -60,6 +63,7 @@ class ProductController extends Controller
         $product->price_buy = $request->input('price_buy');
         $product->price_major = $request->input('price_major');
         $product->long_description = $request->input('long_description');
+        $product->category_id = $request->category_id;
         $product->save(); //realiza un insert sobre la tabla Product.
 
         return redirect('/admin/products');
@@ -68,8 +72,9 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::orderBy('name')->get();
        $product = Product::find($id);
-        return view('admin.products.edit')->with(compact('product'));   // devolvera el formulario de registro a editar
+        return view('admin.products.edit')->with(compact('product','categories'));   // devolvera el formulario de registro a editar
     }
 
     public function update(Request $request, $id) //inyección de dependencia de Laravel
@@ -109,6 +114,7 @@ class ProductController extends Controller
         $product->price_buy = $request->input('price_buy');
         $product->price_major = $request->input('price_major');
         $product->long_description = $request->input('long_description');
+        $product->category_id = $request->category_id;
         $product->save(); //realiza un Update sobre la tabla Product.
 
         return redirect('/admin/products');

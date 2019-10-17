@@ -58,7 +58,7 @@
                       </div>
                       <div class="widget-content-left flex2">
                         <div class="widget-heading">{{ $product->name }} </div>
-                        <div class="widget-subheading opacity-7">{{ $product->category ? $product->category->name : 'General' }}</div>
+                        <div class="widget-subheading opacity-7">{{ $product->category_name }}</div>
                       </div>
                     </div>
                   </div>
@@ -76,7 +76,8 @@
                 <td class="text-center">
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <form method="post" action="{{ url('/admin/products/'.$product->id) }}">
-                    <a href="" type="button" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Ver producto">
+                    <a href="{{ url('/products/'.$product->id) }}" type="button" class="btn btn-info btn-sm" data-toggle="tooltip"
+                     data-placement="top" title="Ver producto" target="_blank">
                       <i class="fa fa-search"></i>
                     </a>
                     <a href="{{ url('/admin/products/'.$product->id.'/images') }}" type="button" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Ver imagenes">

@@ -5,7 +5,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>@yield ('title', 'Industria Corchera | Inicio')</title>
+  <title>@yield ('title',config('app.name'))</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="e-commerce site well design with responsive view." />
@@ -18,7 +18,7 @@
   <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
   <link href="{{ asset('css/owl.carousel.css') }}" type="text/css" rel="stylesheet" media="screen" />
   <link href="{{ asset('css/owl.transitions.css') }}" type="text/css" rel="stylesheet" media="screen" />
-  <script type="text/javascript" src="{{ asset('js/jquery-2.1.1.min.js') }}"></script>
+  <script src="{{ url('https://code.jquery.com/jquery-2.2.4.min.js') }}" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="{{ asset('js/bootstrap/js/bootstrap.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/template_js/jstree.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/template_js/template.js') }}"></script>
@@ -26,6 +26,7 @@
   <script type="text/javascript" src="{{ asset('js/global.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/owl-carousel/owl.carousel.min.js') }}"></script>
   @yield('estilo')
+  @yield('estilob')
 </head>
 
 <body>
@@ -98,16 +99,11 @@
     <div class="container">
       <div class="header-inner">
         <div class="col-sm-3 col-xs-3 header-left">
-          <div id="logo"> <a href="{{ url('/welcome') }}"><img src="{{ asset('images/logo.png') }}" title="E-Commerce" alt="E-Commerce" class="img-responsive" /></a> </div>
+          <div id="logo"> <a href="{{ url('/') }}"><img src="{{ asset('images/logo.png') }}" alt="E-Commerce" class="img-responsive" /></a> </div>
         </div>
         <div class="col-sm-9 col-xs-9 header-right">
-          <div id="search" class="input-group">
-            <input type="text" name="search" value="" placeholder="buscas algún corcho?" class="form-control input-lg" />
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default btn-lg"><span>Buscar</span></button>
-            </span>
-           </div>
-         <!--   aqui va el include shopping blade -->
+          @include('includes.buscador')
+          <!--   aqui va el include shopping blade -->
         </div>
       </div>
     </div>
@@ -144,12 +140,6 @@
   <div class="container">
     @yield('content')
   </div>
-    <script src="javascript/jquery.parallax.js"></script>
-    <script>
-      jQuery(document).ready(function($) {
-        $('.parallax').parallax();
-      });
-    </script>
 </body>
 
 </html>

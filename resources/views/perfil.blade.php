@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Industria Corchera | Bienvenidos')
+@section('title','Perfil |' .config('app.name'))
 
 @section('content')
 
@@ -102,6 +102,20 @@
                         </tr>
                         @endforeach
                       </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>SUBTOTAL:</td>
+                          <td>$ {{ auth()->user()->cart->subtotal }} </td>
+                        </tr>
+                        <tr>
+                          <td>IVA 19%</td>
+                        <td>$ {{ auth()->user()->cart->subtotal * 0.19 }}</td>
+                        </tr>
+                        <tr>
+                          <td><span> TOTAL:</span></td>
+                        <td>$ {{ auth()->user()->cart->subtotal * 1.19 }}</td>
+                        </tr>
+                      </tfoot>
                     </table>
                   </div>
                   <hr>
