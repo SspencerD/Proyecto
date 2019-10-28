@@ -38,6 +38,7 @@
           <table class="align-middle mb-0 table table-borderless table-striped table-hover">
             <thead>
               <tr>
+                <th class="text-center">Imagen</th>
                 <th class="text-center">Id</th>
                 <th class='text-left'>Nombre</th>
                 <th class='text-center'>Descripción</th>
@@ -47,6 +48,7 @@
             @foreach ($categories as $category)
             <tbody>
               <tr>
+              <td class=""> <img src="{{ $category->featured_image_url }}" alt="" height="50"></td>
                 <td class="text-center text-muted">{{ $category->id }}</td>
                 <td>
                   <div class="widget-content-left flex2">

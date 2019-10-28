@@ -46,7 +46,7 @@
     <div class="main-card mb-3 card">
       <div class="card-body">
         <h5 class="card-title">¿Que Categoria vamos a editar?</h5>
-        <form method="post" action="{{ url('/admin/categories/'.$category->id.'/edit') }}">
+        <form method="post" action="{{ url('/admin/categories/'.$category->id.'/edit') }}" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="form-row">
             <div class="col-md-3">
@@ -58,9 +58,20 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label class="">Descripción</label>
-                <input type="text" class="form-control" name="description" value="{{ old('description') }}">
+                <input type="text" class="form-control" name="description" value="{{ Old('description') }}">
               </div>
             </div>
+            <div class="col-md-3">
+                <div class="position-relative form-group">
+                  <label for="descripcion" class="">Subir imagen</label>
+                  <input name="image" type="file" class="form-control btn btn-primary">
+                  @if($category->image)
+                  <p class="help-block alert alert-danger">Subir imagen solo si desea remplazar la
+                  <a href="{{ asset('/images/categories/'.$category->image) }}" target="_blank">imagen actual</a>
+                  </p>
+                  @endif
+                </div>
+              </div>
           </div>
           <button class="mb-2 mr-2 btn btn-success">Editar</button>
           <a href="{{ url('/admin/categories') }}" class="mb-2 mr-2 btn btn-danger">Cancelar</a>

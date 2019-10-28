@@ -45,7 +45,7 @@
       <div class="main-card mb-3 card">
         <div class="card-body">
           <h5 class="card-title">¿Que categoria vamos a crear?</h5>
-          <form class="" method="post" action="{{ '/admin/categories' }}">
+          <form class="" method="post" action="{{ '/admin/categories' }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-row">
               <div class="col-md-3">
@@ -60,6 +60,12 @@
                   <input name="description" id="descripcion" placeholder="¿de que trata?" type="text" class="form-control" value="{{ old('description') }}">
                 </div>
               </div>
+              <div class="col-md-3">
+                  <div class="position-relative form-group">
+                    <label for="descripcion" class="">Subir imagen</label>
+                    <input name="image" type="file" class="form-control btn btn-primary">
+                  </div>
+                </div>
             </div>
             <button class="mb-2 mr-2 btn btn-success">Registrar categoria</button>
             <a href="{{ url('/admin/categories') }}" class="mb-2 mr-2 btn btn-danger">Cancelar</a>

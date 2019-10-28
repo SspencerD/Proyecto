@@ -54,7 +54,7 @@
                      <td>{{$cart->subtotal}}</td>
                 </tr>        
               <tr>
-                <td>{{$cart->subtotal * 1.19}}</td>
+                <td>{{$cart->subtotal * 0.19}}</td>
             </tr>
         </tfoot>
     </table>

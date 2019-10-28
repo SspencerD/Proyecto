@@ -436,8 +436,9 @@
     </div>
   </div>
 </div>
-@include('includes.notices')
-
-
-
+@guest
+@include('includes.fastregister')  
+@endguest
+@include('includes.representaciones')
+@include('includes.footer')
 @endsection

@@ -32,7 +32,7 @@ class Product extends Model
         }
 
         //default
-        return  'images/products/default.jpg';
+        return  'images/default.jpg';
 
    }
 
