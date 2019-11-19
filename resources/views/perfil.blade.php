@@ -9,13 +9,13 @@
     <div class="row">
       <div class="content col-sm-12">
         <div class="customtab">
-          <h3 class="productblock-title">Bienvenido: {{ Auth::user()->name }} </h3>
+          <h3 class="productblock-title">Bienvenido: {{ Auth::user()->name}} </h3>
           <hr>
           <br><br><br>
 
-          <a href="{{ url('/') }}" class="btn btn-primary">Volver al inicio</a>
 
-          <br><br><br><br><br><br>
+          <br><br><br><br>
+          
 
 
         </div>

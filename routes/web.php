@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('/', 'TestController@welcome');
+use App\Http\Controllers\Partner\ClaimController;
+
+Route::get('/', 'TestController@welcome'); 
 
 Auth::routes();
 
-//Route::middleware(['auth','user'])->prefix('user')->namespace('user')->group(function)() {});
+
 
 Route::get('/search', 'SearchController@show');
 Route::get('/products/json', 'SearchController@data');
@@ -29,25 +31,38 @@ Route::delete('/cart', 'CartDetailController@destroy'); //elimina un producto de
 Route::get('/categories/{category}', 'CategoryController@show'); // Ruta para mostrar detalles del categorias.
 
 
+
+
 //ruta para generar la orden de compra de un carrito de compra (se podra utilizar el mismo metodo para la orden de compra interna.
 Route::post('/order', 'CartController@update');
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group(function () {  //DEBO CREAR EL PREFIJO SUPPLY SALES PARTNERS
-    Route::get('/home', 'HomeController@index')->name('home');
+    
+    Route::get('/dashboard', 'DashboardController@index'); //muestra panel de Admins , proveedores y otros.
 
+
+    //conjunto de rutas para Usuarios
+    Route::get('/users', 'UserController@index'); // listar todos los usuarios.
+    Route::get('/users/create', 'UserController@create'); // vista para crear usuarios.
+    Route::post('/users', 'UserController@store'); // guarda los datos de usuarios..
+    Route::get('/users/{id}/edit', 'UserController@edit'); // Ruta para editar los datos
+    Route::post('/users/{id}/edit', 'UserController@update'); //  la acción despues de editar los usuarios
+    Route::delete('/users/{id}', 'UserController@destroy');
+
+    // conjunto de rutas para productos.
     Route::get('/products', 'ProductController@index'); //listar productos
     Route::get('/products/create', 'ProductController@create'); //Crear productos (ver formulario de registro)
     Route::post('/products', 'ProductController@store'); //guardar datos del usuario.
     Route::get('/products/{id}/edit', 'ProductController@edit'); // Ruta para editar los datos
     Route::post('/products/{id}/edit', 'ProductController@update'); //  la acción despues de editar el producto
     Route::delete('/products/{id}', 'ProductController@destroy');  //borra el producto
+    Route::get('/products/{id}/images', 'ImageController@index'); // trae la imagen especifica por producto
+    Route::post('/products/{id}/images', 'ImageController@store'); // almacena la imagen especifica por producto
+    Route::delete('/products/{id}/images', 'ImageController@destroy'); // destruye o elimina la imagen del producto especifico.
+    Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); // destacar la imagen del producto.
 
-    Route::get('/products/{id}/images', 'ImageController@index');
-    Route::post('/products/{id}/images', 'ImageController@store');
-    Route::delete('/products/{id}/images', 'ImageController@destroy');
-    Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); // destacar
-
+    //conjunto de rutas para categorias
     Route::get('/categories', 'CategoryController@index'); //listar Categorias
     Route::get('/categories/create', 'CategoryController@create'); //Crear Categorias (ver formulario de registro)
     Route::post('/categories', 'CategoryController@store'); //guardar datos del usuario.
@@ -55,4 +70,32 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
     Route::post('/categories/{category}/edit', 'CategoryController@update'); //  la acción despues de editar el Categoryo
     Route::delete('/categories/{category}', 'CategoryController@destroy');  //borra el producto
 
+    //Vista de pedidos realizado
+
+    //Solicitud de Compras
+
+
+    // Bodegas
+    Route::get('/warehouse','WarehouseController@index'); //vista de las bodegas disponibles.
+
+
+    //Autorizaciónes Roles
+
+
+
 });
+Route::group(['middleware'=>'auth','namespace' =>'Partner'], function ()
+{
+     //Reclamos
+
+    Route::get('/claims','ClaimController@index');//->middleware('partner'); // ventana de reclamos
+    Route::get('/claims/show','ClaimController@show'); // Muestra el reclamo seleccionado.
+    Route::get('/claims/create','ClaimController@create');// 
+    //Route::post('/claims/create','ClaimController@store');// 
+    Route::get('/claims/edit','ClaimController@edit');// 
+   // Route::post('/claims/{}/edit','ClaimController@update');
+    //Route::delete('/claims/{}','ClaimController@store');//  d
+
+
+});
+

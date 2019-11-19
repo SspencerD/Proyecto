@@ -11,9 +11,9 @@
                   </h4> 
                   <form class="form-inline">
                         <label class="sr-only" for="inlineFormInputName2">Nombre</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" name="name" id="inlineFormInputName2" placeholder="Su nombre">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="name"  placeholder="Su nombre">
                         <label class="sr-only" for="inlineFormInputGroupUsername2">Correo Electronico</label>
-                          <input type="email" class="form-control" id="inlineFormInputGroupUsername2" placeholder="tucorreo@dominio.com">       
+                          <input type="email" class="form-control" placeholder="tucorreo@dominio.com" name="email">       
                         <button type="submit" class="btn btn-primary mb-2">Registrarse</button>
                       </form>
                  </div>

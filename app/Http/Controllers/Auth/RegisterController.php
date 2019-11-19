@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\City;
+use App\Region;
+use App\Country;
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Province;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
 use Illuminate\http\Request as Req;
+
 
 class RegisterController extends Controller
 {
@@ -53,7 +57,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'lastname' => ['required' , 'string', 'max:255'],
+            'dni' => ['required','string','max:14','unique:users'],
+            'raesonsocial' =>['string', 'min:10'],
+            'activity' => ['required', 'string', 'min:10'],
+            'phone'=>['required', 'numeric'],
+            'address'=>['required','string', 'max:100'],
         ]);
     }
 
@@ -69,14 +79,40 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'lastname' => $data['lastname'],
+            'dni' => $data['dni'],
+           'raesonsocial' => $data['raesonsocial'],
+           'activity' => $data['activity'],
+           'phone' => $data['phone'],
+           'address' => $data['address'],
+           'country_id' => $data['country'],
+           'region_id' =>$data['region'],
+           'city_id' =>$data['city'],
+           'province_id' =>$data['province'],
         ]);
     }
-
+    
     public function showRegistrationForm(Req $request )
     {
         $name = $request->input('name');
         $email = $request->input('email');
-        return view('auth.register')->with(compact('name','email'));
+        $paises = Country::orderBy('name')->get();
+        
+        return view('auth.register')->with(compact('name','email','paises'));
         
     }
+    public function byRegion($id)
+    {
+        return Region::where('country_id',$id)->get();
+    }
+    public function byCity($id)
+    {
+        return City::where('region_id',$id )->get();
+    }
+    public function byComuna($id)
+    {
+        return Province::where('city_id',$id )->get();
+    }
+
+
 }

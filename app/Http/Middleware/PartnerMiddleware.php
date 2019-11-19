@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class AdminMiddleware
+class PartnerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,14 +15,10 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-    
-        if (Auth::check() && Auth::user()->roles =='admin') {
+        if (Auth::check() && Auth::user()->roles =='partner' && 'admin') {
             return $next($request);
         }
         return redirect('/');
-
-
-
         
     }
 }

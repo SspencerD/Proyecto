@@ -52,13 +52,13 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label class="">Nombre</label>
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" name="name" value="{{ old('name',$category->name ) }}">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label class="">Descripción</label>
-                <input type="text" class="form-control" name="description" value="{{ Old('description') }}">
+                <input type="text" class="form-control" name="description" value="{{ Old('description',$category->description) }}">
               </div>
             </div>
             <div class="col-md-3">

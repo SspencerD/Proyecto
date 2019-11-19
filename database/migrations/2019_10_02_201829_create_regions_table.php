@@ -17,9 +17,7 @@ class CreateRegionsTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name');
-
-            $table->unsignedBigInteger('city_id')->unsigned();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->string('region_ordinal');
             
             $table->timestamps();
         });

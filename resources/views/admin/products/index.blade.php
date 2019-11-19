@@ -74,7 +74,8 @@
                   $ {{$product->price_major}}
                 </td>
                 <td class="text-center">
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-toolbar" role="toolbar" aria-label="Acciones">
+                  <div class="btn-group mr-2" role="group" aria-hidden="hello"
                   <form method="post" action="{{ url('/admin/products/'.$product->id) }}">
                     <a href="{{ url('/products/'.$product->id) }}" type="button" class="btn btn-info btn-sm" data-toggle="tooltip"
                      data-placement="top" title="Ver producto" target="_blank">
@@ -90,6 +91,9 @@
                     <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Eliminar producto">
                       <i class="fa fa-trash"></i>
                     </button>
+                  </form>
+                  </div>
+                </div>
                 </td>
               </tr>
               @endforeach
