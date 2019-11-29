@@ -1,6 +1,5 @@
-<!DOCTYPE html>
 <html lang="es">
-
+ <!DOCTYPE html>
 <head>
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -75,7 +74,18 @@
                       <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li>
                       @endif
                       @else
-                      <li><a class="nav-link" href="{{url('/perfil')}}">{{ Auth::user()->name }}</a>
+                      @if(! auth()->user()->IsClient)
+                    <li><a class="nav-link" href="{{url('/admin/dashboard')}}">
+
+                        {{auth()->user()->name }}&nbsp;&nbsp;{{auth()->user()->lastname }}
+                    </a>
+                       @else
+                    <li>
+                        <a class="nav-link" href="{{url('/perfil')}}">
+
+                            {{auth()->user()->name }}&nbsp;&nbsp;{{auth()->user()->lastname }}
+
+                        @endif
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                           {{ __('Cerrar Sesion') }}
@@ -103,6 +113,9 @@
         </div>
         <div class="col-sm-9 col-xs-9 header-right">
           @include('includes.buscador')
+          @if(Auth::check())
+            @include('includes.shopping')
+            @endif
           <!--   aqui va el include shopping blade -->
         </div>
       </div>

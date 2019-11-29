@@ -52,13 +52,13 @@
             <div class="col-md-3">
               <div class="form-group">
                 <label class="">Nombre</label>
-                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                <input type="text" class="form-control" name="name" value="{{ old('name',$product->name ) }}">
               </div>
             </div>
             <div class="col-md-3">
               <div class="form-group">
                 <label class="">Descripción</label>
-                <input type="text" class="form-control" name="description" value="{{ old('description') }}">
+                <input type="text" class="form-control" name="description" value="{{ old('description',$product->description ) }}">
               </div>
             </div>
           </div>
@@ -73,23 +73,24 @@
                     @endforeach
                   </select>
                 </div>
+                
               </div>
           <div class="col-md-2 form-group">
             <label class="">Precio</label>
-            <input type="numbrer" step="00.000,00" class="form-control" name="price" value="{{ old('price') }}">
+            <input type="numbrer" step="00.000,00" class="form-control" name="price" value="$ {{ old('price',$product->price) }}">
           </div>
           <div class="col-md-2 form-group">
             <label class="">Precio Compra</label>
-            <input type="numbrer" step="00.000,00" class="form-control" name="price_buy" value="{{ old('price_buy') }} ">
+            <input type="numbrer" step="00.000,00" class="form-control" name="price_buy" value=" &euro; {{ old('price_buy',$product->price_buy ) }} ">
           </div>
           <div class="col-md-2 form-group">
             <label class="">Precio por mayor</label>
-            <input type="numbrer" step="00.000,00" class="form-control" name="price_major" value="{{ old('price_major') }}">
+            <input type="numbrer" step="00.000,00" class="form-control" name="price_major" value="$ {{ old('price_major',$product->price_major ) }}">
           </div>
           <div class="row form-group">
             <label class="col-sm-2 col-form-label">Descripción detallada</label>
             <div class="col-sm-10">
-              <textarea class="form-control" name="long_description">{{ old('long_description') }}</textarea>
+              <textarea class="form-control" name="long_description">{{ old('long_description',$product->long_description ) }}</textarea>
             </div>
           </div>
           <button class="mb-2 mr-2 btn btn-success">Editar</button>

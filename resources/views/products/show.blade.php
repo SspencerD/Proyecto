@@ -58,12 +58,19 @@
                 <div class="qty">
                   <label>Cantidad</label>
                   <input id="qty" placeholder="1" type="number" name="quantity">
+                  @if (auth()->check())
                   <ul class="button-group list-btn">
                     <li>
                       <button type="button" class="wishlist" data-toggle="tooltip" data-placement="top" title="Agregar a lista de deseos"><i class="fa fa-heart-o"></i></button>
                     </li>
                   </ul>
                   <button type="submit" data-toggle="tooltip" data-placement="top" title="Agregar a Carrito"><i class="fa fa-shopping-bag"></i>Añadir a Carrito</button>
+
+                  @else
+                <a href="{{ url('/login?redirect_to='.url()->current()) }}" type="submit" data-toggle="tooltip" data-placement="top" title="Agregar a Carrito"><i class="fa fa-shopping-bag"></i>Añadir a Carrito</button>
+
+
+                  @endif
             </form>
           </div>
         </div>

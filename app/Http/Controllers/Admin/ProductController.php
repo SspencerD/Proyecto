@@ -106,7 +106,7 @@ class ProductController extends Controller
         ];
 
         $this->validate($request , $rules, $message );  //hacemos validación de datos
-       
+
         $product = Product::find($id);
         $product->name = $request->input('name');
         $product->description = $request->input('description');
@@ -123,7 +123,7 @@ class ProductController extends Controller
 
     public function destroy($id) //inyección de dependencia de Laravel
     {
-       
+
         $product = Product::find($id);
         $product->delete(); //realiza un Update sobre la tabla Product.
 
@@ -131,4 +131,3 @@ class ProductController extends Controller
 
     }
 }
- 

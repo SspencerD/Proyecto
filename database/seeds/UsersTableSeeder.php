@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use Illuminate\Support\Str;
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -15,12 +17,52 @@ class UsersTableSeeder extends Seeder
 
             'name'=> 'Javier',
             'email'=> 'cyancube.spencer@gmail.com',
+            'lastname'=>'Soto',
+            'raesonsocial'=>'Industria Corchera S.A',
             'password'=> bcrypt('123123'),
-            'admin'=> false,
+            'roles'=>'assurement',
+        ]);
+            User::create([
             'name'=> 'Santiago',
             'email'=> 'sspencer@corchera.cl',
+            'lastname'=>'Spencer',
+            'raesonsocial'=>'Industria Corchera S.A',
             'password'=> bcrypt('123123'),
-            'admin'=> true,
+            'roles'=>'admin',
+        ]);
+        User::create([
+            'name'=> 'Daniel',
+            'email'=> 'santiago.spencer.d@gmail.com',
+            'password'=> bcrypt('123123'),
+            'roles'=>'supply',
+        ]);
+        User::create([
+            'name'=> 'Patricio',
+            'lastname'=>'Barra',
+            'raesonsocial'=>'Viña Concha y Toro S.A',
+            'email'=> 'pbarra.@gmail.com',
+            'password'=> bcrypt('123123'),
+            'roles'=>'partner',
+        ]);
+        User::create([
+            'name'=> Str::random(10),
+            'email'=> Str::random(10).'@gmail.com',
+            'password'=> bcrypt('123123'),
+            'roles'=>'saleman',
+        ]);
+        User::create([
+            'name'=> Str::random(10),
+            'email'=> Str::random(10).'@gmail.com',
+            'password'=> bcrypt('123123'),
+            'roles'=>'provider',
+        ]);
+        User::create([
+            'name'=> 'David',
+            'lastname'=>'Rodriguez',
+            'raesonsocial'=>'Industria Corchera S.A',
+            'email'=> 'drodriguez@corchera.cl',
+            'password'=> bcrypt('123123'),
+            'roles'=>'client',
         ]);
     }
 }

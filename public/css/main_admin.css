@@ -24606,7 +24606,7 @@ a.fc-more:hover {
 }
 
 .card.mb-3 {
-    margin-bottom: 30px !important
+    margin-bottom: 30px;
 }
 
 .demo-image-bg {
@@ -24614,3 +24614,6 @@ a.fc-more:hover {
     margin-bottom: 30px;
     background-size: 100%
 }
+
+
+

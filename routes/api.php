@@ -2,17 +2,15 @@
 
 use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::get('/pais/{id}/region','Auth\RegisterController@byRegion');
+Route::get('/region/{id}/ciudad','Auth\RegisterController@byCity');
+Route::get('/ciudad/{id}/comuna','Auth\RegisterController@byComuna');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//API para reconocer las regiones, ciudades y comunas en admin
+
+Route::get('/paises/{id}/regiones','Admin\UserController@byRegion');
+Route::get('/regiones/{id}/ciudades','Admin\UserController@byCity');
+Route::get('/ciudades/{id}/comunas','Admin\UserController@byProvince');
+
+
+

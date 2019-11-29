@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Menu de administración del sistema">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="{{ asset('css/main_admin.css') }}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link href="{{ asset('/css/main_admin.css') }}" rel="stylesheet">
     <link href="{{ url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css') }}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" rel="stylesheet">
@@ -65,70 +66,101 @@
                     <ul class="header-menu nav">
 
                         <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
+                            <a href="javascript:void(0);" @if(request()->is('estadistic')) class="nav-link active")@endif class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
                                 Estadisticas
                             </a>
                         </li>
                         <li class="btn-group nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Ordenes de Compra
+                                <div class="dropdown show">
+                                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="nav-link-icon fa fa-edit"></i>
+                                            Adquisiciones
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                          <a class="dropdown-item" href="#">Solicitud de compra</a>
+                                          <a class="dropdown-item" href="#">Ordenes de compra</a>
+                                          <a class="dropdown-item" href="#">Recepción de producto</a>
+                                        </div>
+                                      </div>
+
+
+
                             </a>
                         </li>
                         <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Configuración
-                            </a>
+                                <div class="dropdown show">
+                                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="nav-link-icon fa fa-edit"></i>
+                                            Reclamos
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                         @if(! auth()->user()->IsPartner)
+                                        <a class="dropdown-item" href=" {{ url('/admin/claims') }}">Ver Reclamos</a>
+                                          @else
+                                           <a class="dropdown-item" href="{{ url('/partner/claims') }}">Mis Reclamos</a>
+                                          @endif
+                                        </div>
+                                      </div>
                         </li>
+                        <li class="dropdown nav-item">
+                                <a href="javascript:void(0);"  @if(request()->is('providers')) class="nav-link active") @endif class="nav-link">
+                                        <i class="fas fa-briefcase"></i>
+                                    Proveedores
+                                </a>
+                            </li>
                     </ul>
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
-                            <div class="widget-content-wrapper">
-                                <div class="widget-content-left">
-                                    <div class="btn-group">
-                                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                            <img width="42" class="rounded-circle" src="{{ asset('images/user1.jpg')}}" alt="">
-                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-                                        </a>
-                                        <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                            <!-- Menu usuario -->
-                                            <button type="button" tabindex="0" class="dropdown-item">Cuenta Usuario</button>
-                                            <button type="button" tabindex="0" class="dropdown-item">Configuración</button>
-                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                {{ __('Cerrar Sesion') }}
-                                            </a>
+                                <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                                <div class="dropdown show">
+                                                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"  aria-haspopup="true" data-toggle="dropdown" aria-expanded="false" class="p-0 btn">
+                                                            <img width="42" class="rounded-circle" src="{{ asset('images/user1.jpg') }}" alt="">
+                                                        </a>
 
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                @csrf
-                                            </form>
-                                            </li>
-
-                                            <!-- button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                                <div tabindex="-1" class="dropdown-divider"></div>
-                                                <button type="button" tabindex="0" class="dropdown-item">Dividers</button> -->
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                         <a class="dropdown-item" href="#">
+                                                             <i class="far fa-address-card"></i>
+                                                             Mi Perfil</a>
+                                                        <a class="dropdown-item" href="#">
+                                                                <i class="fas fa-users-cog"></i>
+                                                            Configuración
+                                                        </a>
+                                                          <div  tabindex="-1" class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                                        @csrf
+                                                                          </form>
+                                                                          <i class="fas fa-sign-out-alt"></i>
+                                                                          Cerrar Sesión
+                                                                        </a>
+                                                        </div>
+                                                      </div>
                                         </div>
+                                        <div class="widget-content-left col-md-6   header-user-info">
+                                            <div class="widget-heading">
+                                                {{Auth::user()->name }}
+                                                {{Auth::user()->lastname }}
+
+                                            </div>
+                                            <div class="widget-subheading">
+                                                    @if( ! auth()->user()->IsPartner )
+                                                        {{ auth()->user()->roles }}
+                                                     @else
+                                                       {{ auth()->user()->raesonsocial }}
+                                                     @endif
+                                            </div>
+                                        </div>
+                                        {{-- <div class="widget-content-right header-user-info ml-3">
+                                            <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
+                                                <i class="fa text-white fa-calendar pr-1 pl-1"></i>
+                                            </button>
+                                        </div> --}}
                                     </div>
-                                </div>
-                                <div class="widget-content-left  ml-3 header-user-info">
-                                    <div class="widget-heading">
-                                        {{ Auth::user()->name }}
-                                    </div>
-                                    <div class="widget-subheading">
-                                        VP People Manager
-                                        <!--  Cargo de la persona  -->
-                                    </div>
-                                </div>
-                                <div class="widget-content-right header-user-info ml-3">
-                                    <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
-                                        <i class="fa text-white fa-calendar pr-1 pl-1"></i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -453,7 +485,7 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Panel</li>
                             <li>
-                                <a href="{{ url('/') }}" class="mm-active">
+                                <a href="{{ url('/') }}"@if(request()->is('dashboard')) class="mm-active") @endif>
                                     <i class="metismenu-icon fas fa-globe"></i>
                                     Inicio
                                 </a>
@@ -462,44 +494,45 @@
                             <li>
                                 <a href="#">
                                     <i class=" metismenu-icon  fas fa-tasks"></i>
-                                    Gestion
+                                    Gestión
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="{{ url('/admin/products') }}">
-                                            <i class="fas fa-boxes"></i>
+                                        <a href="{{ url('/admin/products') }}" @if(request()->is('products')) class="mm-active") @endif>
+                                            <i class="fas fa-box"></i>
                                             Productos
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/admin/categories') }}">
-                                        <i class="fas fa-table"></i>
+                                        <a href="{{ url('/admin/categories') }}" @if(request()->is('categories')) class="mm-active") @endif>
+                                        <i class="fas fa-bookmark"></i>
                                             </i>Categorias
                                         </a>
-                                    </li>
+                                    </li> @if(auth()->user()->roles=='admin')
                                     <li>
-                                        <a href="elements-icons.html">
-                                            <i class="metismenu-icon">
-                                            </i>Insumos
+                                        <a href="{{  url('/admin/users') }}">
+                                    <i class="fas fa-users"></i>
+                                    Usuarios
                                         </a>
                                     </li>
+                                    @endif
                                     <li>
                                         <a href="elements-badges-labels.html">
-                                            <i class="metismenu-icon">
-                                            </i>Herramientas
+                                        <i class="fas fa-shopping-basket"></i>
+                                            </i>Pedidos
                                         </a>
                                     </li>
                                     <li>
                                         <a href="elements-cards.html">
-                                            <i class="metismenu-icon">
-                                            </i>Repuestos
+                                            <i class="far fa-id-badge"></i>
+                                            </i>Autorizaciónes
                                         </a>
                                     </li>
                                     <li>
                                         <a href="elements-list-group.html">
-                                            <i class="metismenu-icon">
-                                            </i>Maquinaria
+                                                <i class="fas fa-warehouse"></i>
+                                            </i>Bodegas
                                         </a>
                                     </li>
                                 </ul>
@@ -633,7 +666,7 @@
             <div class="app-main__outer">
                 <div class="app-main__inner">
                     @yield('contenido')
-                    <!-- <div class="app-page-title">  cubierta donde se debe editar 
+                    <!-- <div class="app-page-title">  cubierta donde se debe editar
                         <div class="page-title-wrapper">
                             <div class="page-title-heading">
                                 <div class="page-title-icon">
@@ -699,39 +732,39 @@
                         </div>
                     </div>
                     <div class="row"> Cantidades a mostrar
-                       
+
                         <div class="col-md-6 col-xl-4">
-                            
-                            <div class="card mb-3 widget-content bg-midnight-bloom"> Tabs ordenes 
+
+                            <div class="card mb-3 widget-content bg-midnight-bloom"> Tabs ordenes
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Total Ordenes</div>
                                         <div class="widget-subheading">Valores del ultimo año</div>
                                     </div>
-                                    <div class="widget-content-right"> Cantidad a dar por el total de la crud 
-                                        
+                                    <div class="widget-content-right"> Cantidad a dar por el total de la crud
+
                                         <div class="widget-numbers text-white"><span>1896</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6 col-xl-4">  Tabs Clientes
-                           
+
                             <div class="card mb-3 widget-content bg-arielle-smile">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
                                         <div class="widget-heading">Clientes</div>
                                         <div class="widget-subheading">Total de clientes registrados</div>
                                     </div>
-                                    <div class="widget-content-right"> Cantidad de clientes sacada por crud 
-                                        
+                                    <div class="widget-content-right"> Cantidad de clientes sacada por crud
+
                                         <div class="widget-numbers text-white"><span>568</span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 col-xl-4"> Tabs Compradores 
-                            
+                        <div class="col-md-6 col-xl-4"> Tabs Compradores
+
                             <div class="card mb-3 widget-content bg-grow-early">
                                 <div class="widget-content-wrapper text-white">
                                     <div class="widget-content-left">
@@ -739,7 +772,7 @@
                                         <div class="widget-subheading">Compras al detalle por la pagina</div>
                                     </div>
                                     <div class="widget-content-right">
-                                        
+
                                         <div class="widget-numbers text-white"><span>100</span></div> Valor sacados por CRUD clientes y si este clientes es general o no
                                     </div>
                                 </div>
@@ -759,8 +792,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row"> vista de reportes graficos 
-                    
+                <div class="row"> vista de reportes graficos
+
                     <div class="col-md-12 col-lg-6">
                         <div class="mb-3 card">
                             <div class="card-header-tab card-header-tab-animation card-header">
@@ -1020,7 +1053,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-xl-4">Tabs de suma de ordenes
-                        
+
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
@@ -1035,8 +1068,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xl-4"> <!-- Tabs de calculo en ventas CLP 
-                       
+                    <div class="col-md-6 col-xl-4">  Tabs de calculo en ventas CLP
+
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
@@ -1051,8 +1084,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xl-4"><!-- Tabs de calculo en ventas EUR 
-                        
+                    <div class="col-md-6 col-xl-4"> Tabs de calculo en ventas EUR
+
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
@@ -1067,7 +1100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-xl-none d-lg-block col-md-6 col-xl-4"><!--Otros Tabs Utilizables.
+                    <div class="d-xl-none d-lg-block col-md-6 col-xl-4"> Otros Tabs Utilizables.
                         ..
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
@@ -1093,8 +1126,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row"><!-- Listado de clientes CRUD 
-                    
+                <div class="row"> Listado de clientes CRUD
+
                     <div class="col-md-12">
                         <div class="main-card mb-3 card">
                             <div class="card-header">Clientes
@@ -1106,7 +1139,7 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
-                                <!--CRUD Clientes 
+                                CRUD Clientes
                                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -1227,8 +1260,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row"> <!--Barras de progreso para calculos 
-                   
+                <div class="row"> Barras de progreso para calculos
+
                     <div class="col-md-6 col-lg-3">
                         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
                             <div class="widget-content">
@@ -1315,17 +1348,13 @@
                     </div>
                 </div>
             </div> -->
+            <script type="text/javascript" src="{{ asset('/js/dashboard/main_admin.js') }}"></script>
+            <script src="{{ url('https://kit.fontawesome.com/18151dc34b.js')}}" crossorigin="anonymous"></script>
                     @include('includes.footer-admin')
                 </div>
-
-                <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
             </div>
         </div>
-        <script type="text/javascript" src="{{ asset('js/main_admin.js') }}"></script>
-        <script src="{{ url('https://code.jquery.com/jquery-3.4.1.min.js') }}" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js') }}" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="{{ url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js') }}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script scr="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
+    </div>
 </body>
 
 </html>
