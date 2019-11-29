@@ -15,6 +15,7 @@ class CreateClaimsTable extends Migration
     {
         Schema::create('claims', function (Blueprint $table) {
             $table->bigIncrements('id');
+<<<<<<< HEAD
 
             $table->string('title');
             $table->string('description');
@@ -50,6 +51,8 @@ class CreateClaimsTable extends Migration
 
 
 
+=======
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
             $table->timestamps();
         });
     }

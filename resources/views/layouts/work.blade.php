@@ -68,12 +68,13 @@
                         <li class="nav-item">
                             <a href="javascript:void(0);" @if(request()->is('estadistic')) class="nav-link active")@endif class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
-                                Estadisticas
+                                KpI
                             </a>
                         </li>
                         <li class="btn-group nav-item">
                                 <div class="dropdown show">
                                         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                                         <i class="nav-link-icon fa fa-edit"></i>
                                             Adquisiciones
                                         </a>
@@ -87,9 +88,37 @@
 
 
 
+=======
+                                        <i class="nav-link-icon fa fa-edit"></i> 
+                                            Adquisiciones
+                                        </a>
+                                      
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                          <a class="dropdown-item" href="#">Solicitud de compra</a>
+                                          <a class="dropdown-item" href="#">Ordenes de compra</a>
+                                          <a class="dropdown-item" href="#">Recepción de compra</a>
+                                        </div>
+                                      </div>
+                            
+                                
+                               
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                             </a>
                         </li>
+                        <li><div class="dropdown show">
+                                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bullhorn"></i>
+                                    Reclamos
+                                </a>
+                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    {{-- dar una condición para ver los reclamos --}}
+                                  <a class="dropdown-item" href="#">Mis Reclamos</a>
+                
+                                </div>
+                              </div></li>
                         <li class="dropdown nav-item">
+<<<<<<< HEAD
                                 <div class="dropdown show">
                                         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="nav-link-icon fa fa-edit"></i>
@@ -106,6 +135,9 @@
                         </li>
                         <li class="dropdown nav-item">
                                 <a href="javascript:void(0);"  @if(request()->is('providers')) class="nav-link active") @endif class="nav-link">
+=======
+                                <a href="javascript:void(0);" class="nav-link">
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                         <i class="fas fa-briefcase"></i>
                                     Proveedores
                                 </a>
@@ -121,7 +153,11 @@
                                                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"  aria-haspopup="true" data-toggle="dropdown" aria-expanded="false" class="p-0 btn">
                                                             <img width="42" class="rounded-circle" src="{{ asset('images/user1.jpg') }}" alt="">
                                                         </a>
+<<<<<<< HEAD
 
+=======
+                                                      
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                          <a class="dropdown-item" href="#">
                                                              <i class="far fa-address-card"></i>
@@ -148,10 +184,17 @@
 
                                             </div>
                                             <div class="widget-subheading">
+<<<<<<< HEAD
                                                     @if( ! auth()->user()->IsPartner )
                                                         {{ auth()->user()->roles }}
                                                      @else
                                                        {{ auth()->user()->raesonsocial }}
+=======
+                                                    @if(Auth::user()->roles=='partner')
+                                                    {{Auth::user()->raesonsocial }}
+                                                     @else
+                                                      {{Auth::user()->roles }}
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                                      @endif
                                             </div>
                                         </div>
@@ -499,18 +542,31 @@
                                 </a>
                                 <ul>
                                     <li>
+<<<<<<< HEAD
                                         <a href="{{ url('/admin/products') }}" @if(request()->is('products')) class="mm-active") @endif>
+=======
+                                        <a href="{{ url('/admin/products') }}">
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                             <i class="fas fa-box"></i>
                                             Productos
                                         </a>
                                     </li>
                                     <li>
+<<<<<<< HEAD
                                         <a href="{{ url('/admin/categories') }}" @if(request()->is('categories')) class="mm-active") @endif>
                                         <i class="fas fa-bookmark"></i>
                                             </i>Categorias
                                         </a>
                                     </li> @if(auth()->user()->roles=='admin')
                                     <li>
+=======
+                                        <a href="{{ url('/admin/categories') }}">
+                                        <i class="fas fa-bookmark"></i>
+                                            </i>Categorias
+                                        </a>
+                                    </li> @if(auth()->user()->roles=='admin') 
+                                    <li>  
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                         <a href="{{  url('/admin/users') }}">
                                     <i class="fas fa-users"></i>
                                     Usuarios
@@ -530,10 +586,25 @@
                                         </a>
                                     </li>
                                     <li>
+<<<<<<< HEAD
                                         <a href="elements-list-group.html">
                                                 <i class="fas fa-warehouse"></i>
                                             </i>Bodegas
                                         </a>
+=======
+                                        <div class="btn-group dropdown">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-warehouse"></i>
+                                                    Bodegas
+                                                </a>
+                                                <div class="dropdown-menu">
+                                                  <ul>
+                                                  <li><a href="{{'/admin/warehouse/'}}">Ver Bodegas</a></li> 
+                                                     <li></li>
+                                                    </ul>
+                                                </div>
+                                              </div>
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                     </li>
                                 </ul>
                             </li>
@@ -1068,8 +1139,13 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-6 col-xl-4">  Tabs de calculo en ventas CLP
 
+=======
+                    <div class="col-md-6 col-xl-4">  Tabs de calculo en ventas CLP 
+                       
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
@@ -1084,8 +1160,13 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-md-6 col-xl-4"> Tabs de calculo en ventas EUR
 
+=======
+                    <div class="col-md-6 col-xl-4"> Tabs de calculo en ventas EUR 
+                        
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-outer">
                                 <div class="widget-content-wrapper">
@@ -1126,8 +1207,13 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="row"> Listado de clientes CRUD
 
+=======
+                <div class="row"> Listado de clientes CRUD 
+                    
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                     <div class="col-md-12">
                         <div class="main-card mb-3 card">
                             <div class="card-header">Clientes
@@ -1139,7 +1225,11 @@
                                 </div>
                             </div>
                             <div class="table-responsive">
+<<<<<<< HEAD
                                 CRUD Clientes
+=======
+                                CRUD Clientes 
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -1260,8 +1350,13 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <div class="row"> Barras de progreso para calculos
 
+=======
+                <div class="row"> Barras de progreso para calculos 
+                   
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                     <div class="col-md-6 col-lg-3">
                         <div class="card-shadow-danger mb-3 widget-chart widget-chart2 text-left card">
                             <div class="widget-content">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Claim extends Model
 {
+<<<<<<< HEAD
     public static $rules = [
 
         'title' =>'required|min:5',
@@ -35,4 +36,7 @@ class Claim extends Model
         'qty_claim.numeric' => 'Debes poner una cantidad numerica , ejemplo:10000',
         'qty_delivery.numeric' => 'Debes poner una cantidad numerica , ejemplo: 10000',
     ];
+=======
+    //
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
 }

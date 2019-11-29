@@ -74,6 +74,7 @@
                       <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li>
                       @endif
                       @else
+<<<<<<< HEAD
                       @if(! auth()->user()->IsClient)
                     <li><a class="nav-link" href="{{url('/admin/dashboard')}}">
 
@@ -85,6 +86,12 @@
 
                             {{auth()->user()->name }}&nbsp;&nbsp;{{auth()->user()->lastname }}
 
+=======
+                      @if(!auth()->user()->admin)
+                    <li><a class="nav-link" href="{{url('/perfil')}}">{{ Auth::user()->name}}{{Auth::user()->lastname }}</a>
+                       @else
+                    <li><a class="nav-link" href="{{url('/admin/dashboard')}}">{{ Auth::user()->name }} {{ Auth::user()->lastname  }}</a>
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                         @endif
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

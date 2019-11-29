@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Partner;
 
+<<<<<<< HEAD
 use App\Category;
 use App\Cause;
 use App\Claim;
@@ -9,6 +10,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Product;
 use app\User;
+=======
+use App\Claim;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
 
 class ClaimController extends Controller
 {
@@ -16,6 +22,7 @@ class ClaimController extends Controller
     {
         $this->middleware('auth');
     }
+<<<<<<< HEAD
     public function index()
     {
 
@@ -81,5 +88,22 @@ class ClaimController extends Controller
 
         return back()->with('notificacion','Se a registrado correctamente su reclamo');
 
+=======
+    //muesta una lista de reclamos
+    public function index()
+    {
+        return view ('partner.claims.index');
+    }
+    //crear un reclamo 
+    public function create()
+    {
+        return view ('partner.claims.create');
+    }
+    //mostrar la vista de cada reclamo
+    public function show()
+    {
+    
+        return view ('partner.claims.show');
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
     }
 }

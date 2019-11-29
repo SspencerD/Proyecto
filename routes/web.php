@@ -11,10 +11,16 @@
 |
 */
 
+<<<<<<< HEAD
 use App\Http\Controllers\Admin\ClaimController as AppClaimController;
 use App\Http\Controllers\Partner\ClaimController;
 
 Route::get('/', 'TestController@welcome');
+=======
+use App\Http\Controllers\Partner\ClaimController;
+
+Route::get('/', 'TestController@welcome'); 
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
 
 Auth::routes();
 
@@ -38,6 +44,7 @@ Route::get('/categories/{category}', 'CategoryController@show'); // Ruta para mo
 Route::post('/order', 'CartController@update');
 
 
+<<<<<<< HEAD
 Route::middleware(['auth', 'admin'])->prefix('admin','partner')->namespace('Admin')->group(function () {  //DEBO CREAR EL PREFIJO SUPPLY SALES PARTNERS
 
     Route::get('/dashboard', 'DashboardController@index'); //muestra panel de Admins , proveedores y otros.
@@ -51,6 +58,21 @@ Route::middleware(['auth', 'admin'])->prefix('admin','partner')->namespace('Admi
     Route::post('/users/{id}/edit', 'UserController@update'); //  la acción despues de editar los usuarios
     Route::delete('/users/{id}', 'UserController@destroy');
 
+=======
+Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group(function () {  //DEBO CREAR EL PREFIJO SUPPLY SALES PARTNERS
+    
+    Route::get('/dashboard', 'DashboardController@index'); //muestra panel de Admins , proveedores y otros.
+
+
+    //conjunto de rutas para Usuarios
+    Route::get('/users', 'UserController@index'); // listar todos los usuarios.
+    Route::get('/users/create', 'UserController@create'); // vista para crear usuarios.
+    Route::post('/users', 'UserController@store'); // guarda los datos de usuarios..
+    Route::get('/users/{id}/edit', 'UserController@edit'); // Ruta para editar los datos
+    Route::post('/users/{id}/edit', 'UserController@update'); //  la acción despues de editar los usuarios
+    Route::delete('/users/{id}', 'UserController@destroy');
+
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
     // conjunto de rutas para productos.
     Route::get('/products', 'ProductController@index'); //listar productos
     Route::get('/products/create', 'ProductController@create'); //Crear productos (ver formulario de registro)
@@ -73,6 +95,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin','partner')->namespace('Admi
 
     //Vista de pedidos realizado
 
+<<<<<<< HEAD
     //Reclamos
     Route::get('/claims','ClaimController@index'); // vista del lado del supervisor...
     Route::get('/claims/{id}/edit','ClaimController@edit');
@@ -83,6 +106,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin','partner')->namespace('Admi
 
 
     // Portal proveedores
+=======
+    //Solicitud de Compras
+
+
+    // Bodegas
+    Route::get('/warehouse','WarehouseController@index'); //vista de las bodegas disponibles.
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
 
 
     //Autorizaciónes Roles
@@ -90,6 +120,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin','partner')->namespace('Admi
 
 
 });
+<<<<<<< HEAD
 
 //ruta reclamos vista Cliente
 Route::group(['middleware'=>'auth','namespace' =>'Partner'], function ()
@@ -100,6 +131,17 @@ Route::group(['middleware'=>'auth','namespace' =>'Partner'], function ()
     Route::get('/claims/create','ClaimController@create');//
     Route::post('/claims/create','ClaimController@store'); // Guarda el reclamo.
     Route::get('/claims/edit','ClaimController@edit');//
+=======
+Route::group(['middleware'=>'auth','namespace' =>'Partner'], function ()
+{
+     //Reclamos
+
+    Route::get('/claims','ClaimController@index');//->middleware('partner'); // ventana de reclamos
+    Route::get('/claims/show','ClaimController@show'); // Muestra el reclamo seleccionado.
+    Route::get('/claims/create','ClaimController@create');// 
+    //Route::post('/claims/create','ClaimController@store');// 
+    Route::get('/claims/edit','ClaimController@edit');// 
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
    // Route::post('/claims/{}/edit','ClaimController@update');
     //Route::delete('/claims/{}','ClaimController@store');//  d
 

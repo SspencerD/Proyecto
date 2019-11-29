@@ -61,9 +61,15 @@ class User extends Authenticatable
         return $cart;
      }
      public function country()
+<<<<<<< HEAD
      {
       return $this->belongsTo('App\Country')->withDefault(['name'=>'Chile']);
 
+=======
+     {    
+      return $this->belongsTo('App\Country')->withDefault(['name'=>'Chile']);
+      
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
      }
      public function region()
      {
@@ -109,6 +115,7 @@ class User extends Authenticatable
        return 'Otra Comuna';
 
    }
+<<<<<<< HEAD
 
    public function getIsAdminAttribute() //accesor de admin
    {
@@ -129,4 +136,6 @@ class User extends Authenticatable
    {
        return $this->role =='client';
     }
+=======
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
 }

@@ -11,7 +11,12 @@
             <i class="fas fa-book icon-gradient bg-happy-itmeo">
         </i>
       </div>
+<<<<<<< HEAD
       <div> Mis Reclamos
+=======
+      <div>Reclamos
+        <div class="page-title-subheading">Listado de los reclamos</div>
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
       </div>
     </div>
     <div class="page-title-actions">
@@ -65,7 +70,11 @@
               <td class="text-center">
               <div class="btn-group" role="group" aria-label="Basic example">
                 <form method="post" action="">
+<<<<<<< HEAD
                   <a href="#" type="button" class="btn btn-info btn-sm" data-toggle="tooltip"
+=======
+                <a href="{{ '/claims/show' }}" type="button" class="btn btn-info btn-sm" data-toggle="tooltip"
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                    data-placement="top" title="Ver Reclamo" target="_blank">
                     <i class="fa fa-search"></i>
                   </a>
@@ -159,5 +168,9 @@
   </div>
 </div>
   {{--   <div class="text-center">{{ $products->links() }} </div> --}}
+<<<<<<< HEAD
   </div>
 @endsection
+=======
+@endsection
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c

@@ -75,7 +75,11 @@
                 </td>
                 <td class="text-center">
                 <div class="btn-toolbar" role="toolbar" aria-label="Acciones">
+<<<<<<< HEAD
                   <div class="btn-group mr-2" role="group" aria-hidden="hello">
+=======
+                  <div class="btn-group mr-2" role="group" aria-hidden="hello"
+>>>>>>> fbbf775543462cb6dd1e3b41b30825a8ee22643c
                   <form method="post" action="{{ url('/admin/products/'.$product->id) }}">
                     <a href="{{ url('/products/'.$product->id) }}" type="button" class="btn btn-info btn-sm" data-toggle="tooltip"
                      data-placement="top" title="Ver producto" target="_blank">
